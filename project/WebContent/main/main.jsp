@@ -73,7 +73,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MOVIE</title>
+<title>김유미</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="jquery.bxslider/jquery.bxslider.js"></script>
     <script src="../js/jquery.bxslider.min.js"></script>
