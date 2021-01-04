@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+      <meta charset="utf-8">
+<title>
+main
+</title> 
+<link rel="stylesheet" href="shape.css" type="text/css">
+<link rel="stylesheet" href="common.css" type="text/css">
+<link rel="stylesheet" href="loc.css" type="text/css">    
+<script src="slide.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+<body>
+   <div id="wrapper">
+    <header id="header">
+              <h1 class="title" onclick="main()">MOVIE</h1>
+              <button type="button" class="login" onclick="login()">로그인</button>
+              <button type="button" class="login" onclick="join()">회원가입</button>
+              <input type="search" id="search" class="login" placeholder="검색어를 입력" onkeyup="">
+         </header>
+              <nav id="nav">
+<!--                  <span class="btn" onclick="board_1()">영화</span>-->
+                  <span class="btn" onclick="board_2()">리뷰</span>
+                  <span class="btn" onclick="board_3()">읽을거리</span>
+                  <span class="btn" onclick="loc()">극장</span>
+              </nav>
+       <div id="main">
+           <h1 id="theater"><div>Theater</div></h1>
+           <h3 id="loc_title"><span>독립영화 상영관</span></h3>
+           <table border="1" width="700" height="250" align="center" class="loc_table">
+            <tr>
+                <td colspan="4" align="center">상영관 지역</td>   
+            </tr>
+               <tr align="center" bgcolor="white" class="loc_name">
+                <td onclick="fetchPage('seoul')">서울</td>
+                <td onclick="fetchPage('gyeonggi')">경기</td>
+                <td onclick="fetchPage('incheon')">인천</td>
+                <td onclick="fetchPage('jeju')">제주</td>   
+               </tr>
+               <tr align="center" bgcolor="white" class="loc_name">
+                <td onclick="fetchPage('gangwon')">강원도</td>
+                <td onclick="fetchPage('chungc')">충청도</td> 
+                <td onclick="fetchPage('jeonlado')">전라도</td>  
+                <td onclick="fetchPage('gyeongs')">경상도</td> </tr>
+           </table>
+           <div id="the_info">
+               <caption><p class="info_name">KT&G 상상마당 홍대</p></caption>
+               <table id="info_table" border="1" align="center">
+                <tr>
+                    <td>상세 주소</td>
+                    <td>서울 마포구 서교동 367-5 문화플래닛 상상마당</td>
+                </tr>
+                <tr>
+                    <td>전화번호</td> 
+                    <td>02-330-6263</td>
+                </tr>
+                <tr>
+                    <td>홈페이지</td> 
+                    <td><a href="http://www.sangsangmadang.com" target="_blank">http://www.sangsangmadang.com</a></td>
+                </tr>
+                <tr>
+                    <td width="200">지도</td>
+                    <td><div id="map"><br>&nbsp;지도 영역</div></td>
+                </tr>
+                <tr>
+                    <td>기타</td>
+                    <td></td>
+                </tr>
+               </table>
+               <p class="info_list" onclick="back()">목록으로</p> 
+           </div>
+
+       </div>
+       
+       <div id="footer">
+              copyright@
+              </div>
+    </div>
+    
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=953c1d4d4db1458d5c8700392f39c23d"></script>  
+    
+    <script>
+    var container = document.getElementById('map');
+    var options = {
+			center: new kakao.maps.LatLng(37.550921,126.921122),
+			level: 3
+		};
+
+    var map = new kakao.maps.Map(container, options);
+        
+        // 지도를 클릭한 위치에 표출할 마커입니다
+        var marker = new kakao.maps.Marker({ 
+    // 지도 중심좌표에 마커를 생성합니다 
+        position: map.getCenter() 
+        }); 
+// 지도에 마커를 표시합니다
+        marker.setMap(map);
+         
+   if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position){
+        
+        var lat = position.coords.latitude, 
+            lon = position.coords.longitude;
+        
+        var locPosition = new kakao.maps.LatLng(lat, lon)
+         
+        displayMarker(locPosition);   
+      });
+    } else {
+    
+    var locPosition = new kakao.maps.LatLng(37.550921,126.921122),    
+        message = 'geolocation을 사용할수 없어요..'
+        
+    displayMarker(locPosition, message);
+}
+
+    function displayMarker(locPosition){
+
+    var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    }); 
+    
+    map.setCenter(locPosition);      
+    };     
+        
+//    var iwContent = '<span>KU 시네마테크</span>',
+//    iwPosition = new kakao.maps.LatLng(37.543107, 127.073067),
+//     
+//    infowindow = new kakao.maps.InfoWindow({
+//    map: map,
+//    position : iwPosition, 
+//    content : iwContent,
+//});    
+        
+    var zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+        
+    </script>
+    
+</body>
+  </head>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
